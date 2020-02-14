@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Superheroes.Data;
 
 namespace Superheroes.Controllers
@@ -20,7 +21,10 @@ namespace Superheroes.Controllers
         // GET: Superhero
         public ActionResult Index()
         {
+
             return View();
+            //Will return the html page called Index from the Views/Superhero folder??
+            //Returns the homepage?
         }
 
         // GET: Superhero/Details/5
@@ -40,16 +44,24 @@ namespace Superheroes.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
+                try
+                {
+                    // TODO: Add insert logic here
 
-                return RedirectToAction(nameof(Index));
+
+                    return RedirectToAction(nameof(Index));
+                }
+                catch
+                {
+                    return View();
+                }
+
             }
-            catch
-            {
-                return View();
-            }
+
+            ViewBag.Id = new SelectList(_context.Superheroes);
+            return View();
         }
 
         // GET: Superhero/Edit/5
