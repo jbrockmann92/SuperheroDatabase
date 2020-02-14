@@ -30,7 +30,9 @@ namespace Superheroes.Controllers
         // GET: Superhero/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var hero = _context.Superheroes.Where(s => s.Id == id).FirstOrDefault();
+            return View(hero);
+            //Need to get working so that I can click on his name, not the Details button
         }
 
         // GET: Superhero/Create
