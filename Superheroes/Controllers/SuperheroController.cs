@@ -90,7 +90,9 @@ namespace Superheroes.Controllers
         // GET: Superhero/Delete/5
         public ActionResult Delete(int id)
         {
-            var hero = _context.Superheroes.Select(s => s.Id = id);
+            var hero = _context.Superheroes.Where(s => s.Id == id).FirstOrDefault();
+            _context.Superheroes.Remove(hero);
+            _context.SaveChanges();
             return View();
         }
 
