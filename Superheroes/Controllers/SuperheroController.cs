@@ -37,7 +37,7 @@ namespace Superheroes.Controllers
         // GET: Superhero/Create
         public ActionResult Create()
         {
-            ViewBag.SuperHeroId = new SelectList(_context.Superheroes, "Id", "FirstName");
+            ViewBag.SuperHeroId = new SelectList(_context.Superheroes, "Id", "SuperheroName");
             return View();
         }
 
@@ -50,7 +50,6 @@ namespace Superheroes.Controllers
             {
                 try
                 {
-                    // TODO: Add insert logic here
                     _context.Superheroes.Add(superhero);
                     _context.SaveChanges();
                     return RedirectToAction(nameof(Index));
