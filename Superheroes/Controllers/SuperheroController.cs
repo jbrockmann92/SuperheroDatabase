@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Superheroes.Data;
+using Superheroes.Models;
 
 namespace Superheroes.Controllers
 {
@@ -36,21 +37,22 @@ namespace Superheroes.Controllers
         // GET: Superhero/Create
         public ActionResult Create()
         {
+            ViewBag.SuperHeroId = new SelectList(_context.Superheroes, "Id", "FirstName");
             return View();
         }
 
         // POST: Superhero/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Superhero superhero)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
                     // TODO: Add insert logic here
-
-
+                    _context.Superheroes.Add(superhero);
+                    _context.SaveChanges();
                     return RedirectToAction(nameof(Index));
                 }
                 catch
@@ -60,7 +62,7 @@ namespace Superheroes.Controllers
 
             }
 
-            ViewBag.Id = new SelectList(_context.Superheroes);
+            ViewBag.SuperHeroId = new SelectList(_context.Superheroes);
             return View();
         }
 
