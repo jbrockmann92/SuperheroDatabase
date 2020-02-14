@@ -22,8 +22,7 @@ namespace Superheroes.Controllers
         // GET: Superhero
         public ActionResult Index()
         {
-
-            return View();
+            return View(_context.Superheroes.ToList());
             //Will return the html page called Index from the Views/Superhero folder??
             //Returns the homepage?
         }
@@ -37,7 +36,7 @@ namespace Superheroes.Controllers
         // GET: Superhero/Create
         public ActionResult Create()
         {
-            ViewBag.SuperHeroId = new SelectList(_context.Superheroes, "Id", "SuperheroName");
+            Superhero superhero = new Superhero();
             return View();
         }
 
@@ -52,7 +51,7 @@ namespace Superheroes.Controllers
                 {
                     _context.Superheroes.Add(superhero);
                     _context.SaveChanges();
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction("Index");
                 }
                 catch
                 {
@@ -91,6 +90,7 @@ namespace Superheroes.Controllers
         // GET: Superhero/Delete/5
         public ActionResult Delete(int id)
         {
+            var hero = _context.Superheroes.Select(s => s.Id = id);
             return View();
         }
 

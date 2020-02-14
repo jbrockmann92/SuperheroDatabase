@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<Superheroes.Models.Superhero>
-
 @{
     ViewData["Title"] = "List";
 }
@@ -31,9 +30,9 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model) { //Need to make sure I'm passing an IEnumerable to this. Model currently has nothing in it. My superhero IEnumerable has to be passed into Model
         <tr>
-            <td>
+            <td> 
                 @Html.DisplayFor(modelItem => item.SuperheroName)
             </td>
             <td>
