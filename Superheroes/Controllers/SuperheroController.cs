@@ -69,9 +69,8 @@ namespace Superheroes.Controllers
         // GET: Superhero/Edit/5
         public ActionResult Edit(int id)
         {
-            //Want to bring superhero out of db, make changes using Create(), then put back?
-            //No, just want to take whatever changes they make and update the row in the db
-            //Do check boxes to see what they want to change? Then put those on the screen?
+            Superhero superhero = _context.Superheroes.Where(s => s.Id == id).FirstOrDefault();
+            //I don't think I need this
             return View();
         }
 
@@ -80,16 +79,24 @@ namespace Superheroes.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
+                try
+                {
+                    var hero = _context.Superheroes.Where(s => s.Id == id).FirstOrDefault();
+                    _context.Superheroes.Update(hero);
+                    _context.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    return View();
+                }
 
-                return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+
+            ViewBag.SuperHeroId = new SelectList(_context.Superheroes);
+            return View();
         }
 
         // GET: Superhero/Delete/5

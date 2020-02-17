@@ -30,7 +30,7 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) { //Tried @var; tried assigning to var and putting name in where details was
+@foreach (var item in Model) {
         <tr>
             <td>
                 <a asp-action="Details" asp-route-id="@item.Id">@item.SuperheroName</a>
