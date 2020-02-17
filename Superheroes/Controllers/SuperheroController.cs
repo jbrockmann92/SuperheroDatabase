@@ -77,14 +77,21 @@ namespace Superheroes.Controllers
         // POST: Superhero/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Superhero superhero) //What is this collection up to? What's it for?
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var hero = _context.Superheroes.Where(s => s.Id == id).FirstOrDefault();
-                    _context.Superheroes.Update(hero);
+
+                    //Right now, I'm just telling it to update the old one with the old one. Need to update whatever necessary info with the collection?
+                    //Need to update the old one with the new information created, which is in the collection
+                    //Need to update the columns in the particular superhero row where the collection has different information than current
+                    //Update whatever values that are not null in the collection? How??
+
+                    //It's getting to this point, but it's not updating properly in the db. Why?
+                    //I suppose I could remove the old one and just add a new one. Doesn't seem right
+                    _context.Superheroes.Update(superhero);
                     _context.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -92,7 +99,6 @@ namespace Superheroes.Controllers
                 {
                     return View();
                 }
-
             }
 
             ViewBag.SuperHeroId = new SelectList(_context.Superheroes);
