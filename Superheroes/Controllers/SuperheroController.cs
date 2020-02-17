@@ -39,7 +39,7 @@ namespace Superheroes.Controllers
         public ActionResult Create()
         {
             Superhero superhero = new Superhero();
-            return View();
+            return View(superhero);
         }
 
         // POST: Superhero/Create
@@ -71,7 +71,7 @@ namespace Superheroes.Controllers
         {
             Superhero superhero = _context.Superheroes.Where(s => s.Id == id).FirstOrDefault();
             //I don't think I need this
-            return View();
+            return View(superhero);
         }
 
         // POST: Superhero/Edit/5
@@ -79,30 +79,16 @@ namespace Superheroes.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, Superhero superhero) //What is this collection up to? What's it for?
         {
-            if (ModelState.IsValid)
-            {
-                try
+                if (ModelState.IsValid)
                 {
-
-                    //Right now, I'm just telling it to update the old one with the old one. Need to update whatever necessary info with the collection?
-                    //Need to update the old one with the new information created, which is in the collection
-                    //Need to update the columns in the particular superhero row where the collection has different information than current
-                    //Update whatever values that are not null in the collection? How??
-
-                    //It's getting to this point, but it's not updating properly in the db. Why?
-                    //I suppose I could remove the old one and just add a new one. Doesn't seem right
                     _context.Superheroes.Update(superhero);
                     _context.SaveChanges();
                     return RedirectToAction("Index");
                 }
-                catch
+                else
                 {
                     return View();
                 }
-            }
-
-            ViewBag.SuperHeroId = new SelectList(_context.Superheroes);
-            return View();
         }
 
         // GET: Superhero/Delete/5

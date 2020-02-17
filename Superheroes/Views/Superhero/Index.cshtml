@@ -14,18 +14,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.SuperheroName)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AlterEgoName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PrimaryAbility)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SecondaryAbility)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Catchphrase)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -34,18 +22,6 @@
         <tr>
             <td>
                 <a asp-action="Details" asp-route-id="@item.Id">@item.SuperheroName</a>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AlterEgoName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PrimaryAbility)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SecondaryAbility)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Catchphrase)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
