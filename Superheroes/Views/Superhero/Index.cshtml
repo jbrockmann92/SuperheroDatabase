@@ -30,10 +30,10 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) { //Need to make sure I'm passing an IEnumerable to this. Model currently has nothing in it. My superhero IEnumerable has to be passed into Model
+@foreach (var item in Model) { //Tried @var; tried assigning to var and putting name in where details was
         <tr>
-            <td> 
-                @Html.DisplayFor(modelItem => item.SuperheroName)
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">@item.SuperheroName</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AlterEgoName)
@@ -49,7 +49,6 @@
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>

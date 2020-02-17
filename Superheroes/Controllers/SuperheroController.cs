@@ -69,6 +69,9 @@ namespace Superheroes.Controllers
         // GET: Superhero/Edit/5
         public ActionResult Edit(int id)
         {
+            //Want to bring superhero out of db, make changes using Create(), then put back?
+            //No, just want to take whatever changes they make and update the row in the db
+            //Do check boxes to see what they want to change? Then put those on the screen?
             return View();
         }
 
